@@ -1,0 +1,47 @@
+.f-info-links a {
+ text-decoration: none;
+ color: rgb(63, 62, 62);
+}
+
+.f-info-links a:hover {
+ text-decoration: underline;
+ color: rgb(124, 136, 247);
+}
+
+.f-info{
+    text-align: center;
+    display: flex;
+    height: 6rem;
+    background-color: rgb(189, 183, 183);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.f-info-links, .f-info-socials , .f-info-brand{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+
+}
+
+.show-img{
+    height:40vh;
+}
+.show-btns{
+    display:flex;
+}
+
+.listing-card{
+    border:none;
+}
+
+.home-img{
+    height: 300px;
+    border-radius: 5%;
+    margin-top: 10px;
+}

@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate.ejs')%>
+<body>
+    <form action="/listings/<%=data.id%>?_method=PATCH" method="post" class="needs-validation" novalidate>
+        <div class="col-9 offset-1">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title : </label>
+                <textarea name="title" id="title" class="form-control" required ><%=data.title%></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description : </label>
+                <textarea name="description" id="description" class="form-control" required ><%=data.description%></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image : </label>
+                <textarea name="image" id="image" class="form-control" required > <%=data.image%></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-4 mb-3">
+                <label for="price" class="form-label">Price : </label>
+                <textarea name="price" id="price" class="form-control" required ><%=data.price%></textarea>
+                </div>
+
+                <div class="col-8 mb-3" >
+                <label for="country" class="form-label">Country : </label>
+                <textarea name="country" id="country" class="form-control" required ><%=data.country%></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location : </label>
+                <textarea name="location" id="location" class="form-control" required ><%=data.location%></textarea>
+            </div>
+
+            <button class="btn btn-dark">Update Data</button>
+        </div>
+    </form>
+</body>

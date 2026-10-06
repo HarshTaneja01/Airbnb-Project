@@ -1,0 +1,73 @@
+<% layout('layouts/boilerplate.ejs')%>
+
+    <body>
+
+        <div class="card row pt-3 ">
+            <div class="col-8 offset-3">
+                <h2>
+                    <%=data.title%>
+                </h2>
+            </div>
+            <div class=" col-6 offset-3 ">
+                <img src="<%=data.image%>" class="card-img-top show-img" alt="...">
+                <br>
+            </div>
+
+            <div class="card-body col-8 offset-2">
+
+                <p class="card-text">
+                    <b> &#8377 <%=data.price.toLocaleString("en-IN")%></b>/night
+                </p>
+
+                <p class="card-text">
+                    <%=data.description%>
+                </p>
+
+                <p class="card-text">
+                    <%=data.location%>
+                </p>
+
+                <p class="card-text">
+                    <%=data.country%>
+                </p>
+
+            </div>
+
+        </div>
+        <div class="col-4 offset-4 show-btns">
+            <a href="/listings/<%=data._id%>/edit" class="btn"><button>Update Listing</button></a>
+            <a href="/listings/<%=data._id%>/delete" class="btn"><button>Delete Listing</button></a>
+        </div>
+        <br>
+        <hr>
+        <div>
+            <form action="/listings/<%=data._id%>/review" method="post" class="form-label needs-validation" novalidate>
+                <h5>Ratings</h5>
+                <input type="range" min="1" max="5" id="stars" name="review[ratings]" class="form-control">
+                <div><h5>Comments</h5>
+                <textarea required name="review[comment]" id="comments" rows="5" cols="10" placeholder="Write a Review"
+                    class="form-control"></textarea>
+                    <div class="invalid-feedback">Please write a review before submitting</div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+<hr>
+        <div>
+            <h3 class="ms-3">Reviews from our Visitors</h3>
+            <div class="row">
+            <%for (review of data.review){%>
+            <div class="card mb-3 col-5 ms-5" >
+                <div class="card-body"></div>
+                <h4 class="card-title">nameee of reviewer</h4>
+                <h5 class="card-text"> <%=review.ratings%> &#11088</h5>
+                <p class="card-text"><%=review.comment%></p>
+
+                <form action="/listings/<%=data._id%>/review/<%=review._id%>?_method=DELETE" method="post">
+                <button class="btn btn-sm btn-dark">Delete</button>
+                </form>
+            </div>
+            <%}%>
+        </div>
+        </div>
+    </body>

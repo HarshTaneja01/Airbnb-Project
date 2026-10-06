@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate.ejs')%>
+<body>
+
+    <h2>Delete Listing</h2>
+    <br>
+    <img src="<%=data.image%>" alt="..." style="width: 18rem;">
+
+    <ul>
+        <li><b>Title :</b> <%=data.title%></li>
+        <li><b>Description :</b> <%=data.description%></li>
+        <li><b>Price :</b> <%=data.price%></li>
+        <li><b>Location :</b> <%=data.location%></li>
+        <li><b>Country :</b> <%=data.country%></li>
+    </ul>
+    <br>
+    <form action="/listings/<%=data.id%>?_method=DELETE" method="post">
+        <button type="submit">Delete Listing</button>
+    </form>
+    
+</body>
