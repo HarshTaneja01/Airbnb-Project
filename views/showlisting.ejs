@@ -16,6 +16,10 @@
             <div class="card-body col-8 offset-2">
 
                 <p class="card-text">
+                    Owned by - <b><%=data.owner.username%> </b>
+                </p>
+
+                <p class="card-text">
                     <b> &#8377 <%=data.price.toLocaleString("en-IN")%></b>/night
                 </p>
 
@@ -34,13 +38,16 @@
             </div>
 
         </div>
+        <%if(currUser && currUser._id.equals(data.owner._id)){%>
         <div class="col-4 offset-4 show-btns">
             <a href="/listings/<%=data._id%>/edit" class="btn"><button>Update Listing</button></a>
             <a href="/listings/<%=data._id%>/delete" class="btn"><button>Delete Listing</button></a>
         </div>
+        <%}%>
         <br>
         <hr>
         <div>
+            <%if(currUser){%>
             <form action="/listings/<%=data._id%>/review" method="post" class="form-label needs-validation" novalidate>
                 <h5>Ratings</h5>
                 <input type="range" min="1" max="5" id="stars" name="review[ratings]" class="form-control">
@@ -51,21 +58,24 @@
                 </div>
                 <button type="submit">Submit</button>
             </form>
+            <hr>
+            <%}%>
         </div>
-<hr>
+
         <div>
             <h3 class="ms-3">Reviews from our Visitors</h3>
             <div class="row">
             <%for (review of data.review){%>
             <div class="card mb-3 col-5 ms-5" >
                 <div class="card-body"></div>
-                <h4 class="card-title">nameee of reviewer</h4>
+                <h4 class="card-title">Review By - "<%=review.author.username%>"</h4>
                 <h5 class="card-text"> <%=review.ratings%> &#11088</h5>
                 <p class="card-text"><%=review.comment%></p>
-
+                <%if(currUser && currUser._id.equals(review.author._id)){%>
                 <form action="/listings/<%=data._id%>/review/<%=review._id%>?_method=DELETE" method="post">
                 <button class="btn btn-sm btn-dark">Delete</button>
                 </form>
+                <%}%>
             </div>
             <%}%>
         </div>

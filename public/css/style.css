@@ -36,10 +36,9 @@
     display:flex;
 }
 
-.listing-card{
-    border:none;
+.listing-card {
+    border: none;
 }
-
 .home-img{
     height: 300px;
     border-radius: 5%;
