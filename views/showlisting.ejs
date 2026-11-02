@@ -67,7 +67,7 @@
             <div class="row">
             <%for (review of data.review){%>
             <div class="card mb-3 col-5 ms-5" >
-                <div class="card-body"></div>
+                <div class="card-body">
                 <h4 class="card-title">Review By - "<%=review.author.username%>"</h4>
                 <h5 class="card-text"> <%=review.ratings%> &#11088</h5>
                 <p class="card-text"><%=review.comment%></p>
@@ -76,6 +76,7 @@
                 <button class="btn btn-sm btn-dark">Delete</button>
                 </form>
                 <%}%>
+            </div>    
             </div>
             <%}%>
         </div>
