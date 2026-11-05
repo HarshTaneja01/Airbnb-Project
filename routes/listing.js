@@ -5,13 +5,18 @@ let listing = require("../models/schema.js");
 const { isLoggedin, isOwner, validatelisting } = require("../middleware.js")
 const mongoose = require("mongoose");
 let listingcontroller = require("../controllers/listings.js")
+const multer = require('multer')
+const upload = multer({dest:'uploads/'})
 
 router.route("/")
     //index route
     .get(asyncwrap(listingcontroller.index))
 
     //new.post route
-    .post(validatelisting, asyncwrap(listingcontroller.createlisting));
+    // .post(validatelisting, asyncwrap(listingcontroller.createlisting));
+    .post(upload.single('listing[image]'),(req,res)=>{
+        res.send(req.file);
+    })
 
 //new route
 router.get("/new", isLoggedin, validatelisting, listingcontroller.rendernewform)
