@@ -1,14 +1,14 @@
 .f-info-links a {
- text-decoration: none;
- color: rgb(63, 62, 62);
+    text-decoration: none;
+    color: rgb(63, 62, 62);
 }
 
 .f-info-links a:hover {
- text-decoration: underline;
- color: rgb(124, 136, 247);
+    text-decoration: underline;
+    color: rgb(124, 136, 247);
 }
 
-.f-info{
+.f-info {
     text-align: center;
     display: flex;
     height: 6rem;
@@ -17,8 +17,10 @@
     justify-content: center;
 }
 
-.f-info-links, .f-info-socials , .f-info-brand{
-    width:100%;
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -29,18 +31,26 @@
 
 }
 
-.show-img{
-    height:40vh;
+.show-img {
+    height: 40vh;
 }
-.show-btns{
-    display:flex;
+
+.show-btns {
+    display: flex;
 }
 
 .listing-card {
     border: none;
 }
-.home-img{
+
+.home-img {
     height: 300px;
     border-radius: 5%;
     margin-top: 10px;
+}
+
+/* map */
+#map {
+    height:400px;
+    width : 130vh;
 }

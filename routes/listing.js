@@ -6,17 +6,16 @@ const { isLoggedin, isOwner, validatelisting } = require("../middleware.js")
 const mongoose = require("mongoose");
 let listingcontroller = require("../controllers/listings.js")
 const multer = require('multer')
-const upload = multer({dest:'uploads/'})
+const { storage } = require("../cloudconfig.js");
+const upload = multer({ storage })
 
 router.route("/")
     //index route
     .get(asyncwrap(listingcontroller.index))
 
-    //new.post route
-    // .post(validatelisting, asyncwrap(listingcontroller.createlisting));
-    .post(upload.single('listing[image]'),(req,res)=>{
-        res.send(req.file);
-    })
+    // new.post route
+    .post(isLoggedin, upload.single('listing[image]'), validatelisting , asyncwrap(listingcontroller.createlisting));
+
 
 //new route
 router.get("/new", isLoggedin, validatelisting, listingcontroller.rendernewform)
@@ -26,11 +25,11 @@ router.route("/:id")
     .get(listingcontroller.showlisting)
 
     //edit.patch route
-    .patch(isLoggedin, isOwner, validatelisting, asyncwrap(listingcontroller.editlisting))
+    .patch(isLoggedin, isOwner, upload.single('listing[image]'), validatelisting, asyncwrap(listingcontroller.editlisting))
 
     //delete.delete route
     .delete(isLoggedin, isOwner, listingcontroller.deletelisting);
-    
+
 //edit route
 router.get("/:id/edit", isLoggedin, isOwner, validatelisting, listingcontroller.rendereditform)
 

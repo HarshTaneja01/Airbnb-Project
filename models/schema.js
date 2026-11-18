@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const { stringify } = require("node:querystring");
 const { Schema } = mongoose.Schema;
-let Review = require("./review.js")
+let Review = require("./review.js");
+const { string } = require("joi");
 
 let listingSchema = new mongoose.Schema({
     title: {
@@ -15,8 +16,8 @@ let listingSchema = new mongoose.Schema({
         trim: true
     },
     image: {
-        type: String,
-        trim: true
+        url: String,
+        filename: String
     },
     price: {
         type: Number,
@@ -40,14 +41,24 @@ let listingSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
+    },
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates : {
+            type : [Number],
+            required : true
+        },
     }
 })
-
 listingSchema.post("findOneAndDelete", async (listing) => {
-    if (listing) {
-        await Review.deleteMany({ _id: { $in: listing.review } })
-    }
-})
+        if (listing) {
+            await Review.deleteMany({ _id: { $in: listing.review } })
+        }
+    })
 
 let listing = mongoose.model("listing", listingSchema)
 
